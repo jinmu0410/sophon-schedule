@@ -1,103 +1,67 @@
 package com.sophon.schedule.master.zk;
 
-
+import com.sophon.schedule.master.zk.register.MasterSubscribeListener;
+import com.sophon.schedule.register.zookeeper.ZookeeperClientAdapter;
+import com.sophon.schedule.register.zookeeper.ZookeeperProperties;
+import com.sophon.schedule.register.zookeeper.ZookeeperRegister;
 import org.apache.curator.framework.CuratorFramework;
-import org.apache.curator.framework.recipes.locks.InterProcessLock;
-import org.apache.curator.framework.recipes.locks.InterProcessMutex;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
 
 /**
  * TODO
  *
  * @Author jinmu
- * @Date 2023/8/9 14:29
+ * @Date 2023/11/2 17:03
  */
 public class MasterServer {
 
+    public static void main(String[] args) {
+        ZookeeperClientAdapter zookeeperClientAdapter = buildZkConnector();
 
-    public static void main(String[] args) throws Exception {
-        start();
+        String path = "/jinmu/test/123";
 
-        ZkCuratorHelper zkCuratorHelper = new ZkCuratorHelper("localhost:2181","test");
+        register(path, zookeeperClientAdapter.getClient());
 
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    zkCuratorHelper.addWatchWithCuratorCache("/jinmu/7");
-//                    Thread.sleep(50000);
-//                    System.out.println("关闭了");
-//
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
-//
-//            }
-//        };
-//        Callable callable = new Callable() {
-//            @Override
-//            public Object call() throws Exception {
-//                zkCuratorHelper.addWatchWithCuratorCache("/jinmu/7");
-//                Thread.sleep(50000);
-//                return "结束了";
-//            }
-//        };
-//        FutureTask futureTask = new FutureTask(callable);
-//
-//        Thread thread = new Thread(futureTask, "test");
-//        thread.setDaemon(true);
-//        thread.start();
-//
-//
-//        zkCuratorHelper.createZNode("/jinmu/7","2023-08-09 12:00:00",false);
-//
-//        //zkCuratorHelper.setValue("/jinmu/6","哈哈哈");
-//        zkCuratorHelper.deleteZNode("/jinmu/7");
-//
-//        zkCuratorHelper.closeZkCuratorConnection();
-//
-//
-//        System.out.println("结果 = " + futureTask.get());
+        try {
+            Thread.sleep(2000);
+            zookeeperClientAdapter.createZNode(path,"测试123456",true);
 
+            Thread.sleep(500);
+            zookeeperClientAdapter.setValue(path,"测试999999");
 
-        testLock(zkCuratorHelper,"/jinmu/lock");
-    }
+            Thread.sleep(500);
+            zookeeperClientAdapter.deleteZNode(path);
 
-    public static void start() throws Exception{
-
-    }
-
-    public static void testLock(ZkCuratorHelper zkCuratorHelper,String path){
-        ThreadLocal<Map<String, InterProcessMutex>> threadLocalLockMap = new ThreadLocal<>();
-
-        for (int i = 0; i < 10; i++) {
-            new Thread(()->{
-                CuratorFramework curatorFramework = zkCuratorHelper.getCuratorFramework();
-                InterProcessMutex lock = new InterProcessMutex(curatorFramework, path);
-                try {
-                    lock.acquire();
-                    System.out.println(Thread.currentThread().getName() + "获取到锁");
-//                    Thread.sleep(5000);
-
-                    if (null == threadLocalLockMap.get()) {
-                        threadLocalLockMap.set(new HashMap<>(3));
-                    }
-                    threadLocalLockMap.get().put(path, lock);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }finally {
-                    try {
-                        lock.release();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }).start();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
+    }
+
+
+    public static void register(String path, CuratorFramework client){
+        ZookeeperRegister zookeeperRegister = new ZookeeperRegister(client);
+        new Thread(()->{
+            boolean flag = zookeeperRegister.subscribe(path,new MasterSubscribeListener());
+            try {
+                if(flag){
+                    System.out.println("订阅路径监听成功");
+                }
+                Thread.sleep(Integer.MAX_VALUE);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
+    public static ZookeeperClientAdapter buildZkConnector(){
+        ZookeeperProperties zookeeperProperties = new ZookeeperProperties();
+        zookeeperProperties.setConnectString("localhost:2181");
+        zookeeperProperties.setNamespace("jinmu-master-service");
+
+        ZookeeperClientAdapter zookeeperClientAdapter = new ZookeeperClientAdapter(zookeeperProperties);
+
+        return zookeeperClientAdapter;
     }
 }

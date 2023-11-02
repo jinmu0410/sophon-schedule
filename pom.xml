@@ -23,6 +23,7 @@
         <module>sophon-schedule-quartz</module>
         <module>sophon-schedule-master</module>
         <module>sophon-schedule-worker</module>
+        <module>sophon-schedule-system</module>
     </modules>
 
 
