@@ -6,88 +6,88 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.59.0)",
-    comments = "Source: grpc-service.proto")
+    comments = "Source: remote.proto")
 @io.grpc.stub.annotations.GrpcGenerated
-public final class BiRequestStreamGrpc {
+public final class RequestStreamGrpc {
 
-  private BiRequestStreamGrpc() {}
+  private RequestStreamGrpc() {}
 
-  public static final String SERVICE_NAME = "BiRequestStream";
+  public static final String SERVICE_NAME = "RequestStream";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<Payload,
-      Payload> getRequestBiStreamMethod;
+      Payload> getRequestStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "requestBiStream",
+      fullMethodName = SERVICE_NAME + '/' + "requestStream",
       requestType = Payload.class,
       responseType = Payload.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
   public static io.grpc.MethodDescriptor<Payload,
-      Payload> getRequestBiStreamMethod() {
-    io.grpc.MethodDescriptor<Payload, Payload> getRequestBiStreamMethod;
-    if ((getRequestBiStreamMethod = BiRequestStreamGrpc.getRequestBiStreamMethod) == null) {
-      synchronized (BiRequestStreamGrpc.class) {
-        if ((getRequestBiStreamMethod = BiRequestStreamGrpc.getRequestBiStreamMethod) == null) {
-          BiRequestStreamGrpc.getRequestBiStreamMethod = getRequestBiStreamMethod =
+      Payload> getRequestStreamMethod() {
+    io.grpc.MethodDescriptor<Payload, Payload> getRequestStreamMethod;
+    if ((getRequestStreamMethod = RequestStreamGrpc.getRequestStreamMethod) == null) {
+      synchronized (RequestStreamGrpc.class) {
+        if ((getRequestStreamMethod = RequestStreamGrpc.getRequestStreamMethod) == null) {
+          RequestStreamGrpc.getRequestStreamMethod = getRequestStreamMethod =
               io.grpc.MethodDescriptor.<Payload, Payload>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "requestBiStream"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "requestStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   Payload.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   Payload.getDefaultInstance()))
-              .setSchemaDescriptor(new BiRequestStreamMethodDescriptorSupplier("requestBiStream"))
+              .setSchemaDescriptor(new RequestStreamMethodDescriptorSupplier("requestStream"))
               .build();
         }
       }
     }
-    return getRequestBiStreamMethod;
+    return getRequestStreamMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static BiRequestStreamStub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<BiRequestStreamStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<BiRequestStreamStub>() {
+  public static RequestStreamStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<RequestStreamStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RequestStreamStub>() {
         @Override
-        public BiRequestStreamStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new BiRequestStreamStub(channel, callOptions);
+        public RequestStreamStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RequestStreamStub(channel, callOptions);
         }
       };
-    return BiRequestStreamStub.newStub(factory, channel);
+    return RequestStreamStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static BiRequestStreamBlockingStub newBlockingStub(
+  public static RequestStreamBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<BiRequestStreamBlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<BiRequestStreamBlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<RequestStreamBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RequestStreamBlockingStub>() {
         @Override
-        public BiRequestStreamBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new BiRequestStreamBlockingStub(channel, callOptions);
+        public RequestStreamBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RequestStreamBlockingStub(channel, callOptions);
         }
       };
-    return BiRequestStreamBlockingStub.newStub(factory, channel);
+    return RequestStreamBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static BiRequestStreamFutureStub newFutureStub(
+  public static RequestStreamFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<BiRequestStreamFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<BiRequestStreamFutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<RequestStreamFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RequestStreamFutureStub>() {
         @Override
-        public BiRequestStreamFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new BiRequestStreamFutureStub(channel, callOptions);
+        public RequestStreamFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RequestStreamFutureStub(channel, callOptions);
         }
       };
-    return BiRequestStreamFutureStub.newStub(factory, channel);
+    return RequestStreamFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -95,90 +95,84 @@ public final class BiRequestStreamGrpc {
   public interface AsyncService {
 
     /**
-     * <pre>
-     * Sends a biStreamRequest
-     * </pre>
      */
-    default io.grpc.stub.StreamObserver<Payload> requestBiStream(
+    default io.grpc.stub.StreamObserver<Payload> requestStream(
         io.grpc.stub.StreamObserver<Payload> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getRequestBiStreamMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getRequestStreamMethod(), responseObserver);
     }
   }
 
   /**
-   * Base class for the server implementation of the service BiRequestStream.
+   * Base class for the server implementation of the service RequestStream.
    */
-  public static abstract class BiRequestStreamImplBase
+  public static abstract class RequestStreamImplBase
       implements io.grpc.BindableService, AsyncService {
 
     @Override public final io.grpc.ServerServiceDefinition bindService() {
-      return BiRequestStreamGrpc.bindService(this);
+      return RequestStreamGrpc.bindService(this);
     }
   }
 
   /**
-   * A stub to allow clients to do asynchronous rpc calls to service BiRequestStream.
+   * A stub to allow clients to do asynchronous rpc calls to service RequestStream.
    */
-  public static final class BiRequestStreamStub
-      extends io.grpc.stub.AbstractAsyncStub<BiRequestStreamStub> {
-    private BiRequestStreamStub(
+  public static final class RequestStreamStub
+      extends io.grpc.stub.AbstractAsyncStub<RequestStreamStub> {
+    private RequestStreamStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @Override
-    protected BiRequestStreamStub build(
+    protected RequestStreamStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new BiRequestStreamStub(channel, callOptions);
+      return new RequestStreamStub(channel, callOptions);
     }
 
     /**
-     * <pre>
-     * Sends a biStreamRequest
-     * </pre>
      */
-    public io.grpc.stub.StreamObserver<Payload> requestBiStream(
+    public io.grpc.stub.StreamObserver<Payload> requestStream(
         io.grpc.stub.StreamObserver<Payload> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
-          getChannel().newCall(getRequestBiStreamMethod(), getCallOptions()), responseObserver);
+          getChannel().newCall(getRequestStreamMethod(), getCallOptions()), responseObserver);
     }
   }
 
   /**
-   * A stub to allow clients to do synchronous rpc calls to service BiRequestStream.
+   * A stub to allow clients to do synchronous rpc calls to service RequestStream.
    */
-  public static final class BiRequestStreamBlockingStub
-      extends io.grpc.stub.AbstractBlockingStub<BiRequestStreamBlockingStub> {
-    private BiRequestStreamBlockingStub(
+  public static final class RequestStreamBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<RequestStreamBlockingStub> {
+    private RequestStreamBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @Override
-    protected BiRequestStreamBlockingStub build(
+    protected RequestStreamBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new BiRequestStreamBlockingStub(channel, callOptions);
+      return new RequestStreamBlockingStub(channel, callOptions);
     }
   }
 
   /**
-   * A stub to allow clients to do ListenableFuture-style rpc calls to service BiRequestStream.
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service RequestStream.
    */
-  public static final class BiRequestStreamFutureStub
-      extends io.grpc.stub.AbstractFutureStub<BiRequestStreamFutureStub> {
-    private BiRequestStreamFutureStub(
+  public static final class RequestStreamFutureStub
+      extends io.grpc.stub.AbstractFutureStub<RequestStreamFutureStub> {
+    private RequestStreamFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @Override
-    protected BiRequestStreamFutureStub build(
+    protected RequestStreamFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new BiRequestStreamFutureStub(channel, callOptions);
+      return new RequestStreamFutureStub(channel, callOptions);
     }
   }
 
-  private static final int METHODID_REQUEST_BI_STREAM = 0;
+  private static final int METHODID_REQUEST_STREAM = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -207,8 +201,8 @@ public final class BiRequestStreamGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_REQUEST_BI_STREAM:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.requestBiStream(
+        case METHODID_REQUEST_STREAM:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.requestStream(
               (io.grpc.stub.StreamObserver<Payload>) responseObserver);
         default:
           throw new AssertionError();
@@ -219,41 +213,41 @@ public final class BiRequestStreamGrpc {
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
-          getRequestBiStreamMethod(),
+          getRequestStreamMethod(),
           io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
             new MethodHandlers<
               Payload,
               Payload>(
-                service, METHODID_REQUEST_BI_STREAM)))
+                service, METHODID_REQUEST_STREAM)))
         .build();
   }
 
-  private static abstract class BiRequestStreamBaseDescriptorSupplier
+  private static abstract class RequestStreamBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    BiRequestStreamBaseDescriptorSupplier() {}
+    RequestStreamBaseDescriptorSupplier() {}
 
     @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return GrpcService.getDescriptor();
+      return Remote.getDescriptor();
     }
 
     @Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("BiRequestStream");
+      return getFileDescriptor().findServiceByName("RequestStream");
     }
   }
 
-  private static final class BiRequestStreamFileDescriptorSupplier
-      extends BiRequestStreamBaseDescriptorSupplier {
-    BiRequestStreamFileDescriptorSupplier() {}
+  private static final class RequestStreamFileDescriptorSupplier
+      extends RequestStreamBaseDescriptorSupplier {
+    RequestStreamFileDescriptorSupplier() {}
   }
 
-  private static final class BiRequestStreamMethodDescriptorSupplier
-      extends BiRequestStreamBaseDescriptorSupplier
+  private static final class RequestStreamMethodDescriptorSupplier
+      extends RequestStreamBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
-    BiRequestStreamMethodDescriptorSupplier(String methodName) {
+    RequestStreamMethodDescriptorSupplier(String methodName) {
       this.methodName = methodName;
     }
 
@@ -268,12 +262,12 @@ public final class BiRequestStreamGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (BiRequestStreamGrpc.class) {
+      synchronized (RequestStreamGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new BiRequestStreamFileDescriptorSupplier())
-              .addMethod(getRequestBiStreamMethod())
+              .setSchemaDescriptor(new RequestStreamFileDescriptorSupplier())
+              .addMethod(getRequestStreamMethod())
               .build();
         }
       }

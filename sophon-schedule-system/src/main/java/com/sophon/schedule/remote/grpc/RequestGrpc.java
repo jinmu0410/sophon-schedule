@@ -6,7 +6,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.59.0)",
-    comments = "Source: grpc-service.proto")
+    comments = "Source: remote.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class RequestGrpc {
 
@@ -95,9 +95,6 @@ public final class RequestGrpc {
   public interface AsyncService {
 
     /**
-     * <pre>
-     * Sends a commonRequest
-     * </pre>
      */
     default void request(Payload request,
                          io.grpc.stub.StreamObserver<Payload> responseObserver) {
@@ -133,9 +130,6 @@ public final class RequestGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a commonRequest
-     * </pre>
      */
     public void request(Payload request,
                         io.grpc.stub.StreamObserver<Payload> responseObserver) {
@@ -161,9 +155,6 @@ public final class RequestGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a commonRequest
-     * </pre>
      */
     public Payload request(Payload request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -188,9 +179,6 @@ public final class RequestGrpc {
     }
 
     /**
-     * <pre>
-     * Sends a commonRequest
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<Payload> request(
         Payload request) {
@@ -256,7 +244,7 @@ public final class RequestGrpc {
 
     @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return GrpcService.getDescriptor();
+      return Remote.getDescriptor();
     }
 
     @Override

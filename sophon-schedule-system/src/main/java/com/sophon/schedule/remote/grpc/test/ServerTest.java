@@ -1,7 +1,6 @@
-package com.sophon.schedule.remote.grpc;
+package com.sophon.schedule.remote.grpc.test;
 
-import com.sophon.schedule.remote.grpc.adapter.GRpcRequestAdapter;
-import com.sophon.schedule.rpc.test.GreeterImpl;
+import com.sophon.schedule.remote.grpc.adapter.RemoteRequestAdapter;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
@@ -12,14 +11,14 @@ import java.io.IOException;
  * TODO
  *
  * @Author jinmu
- * @Date 2023/11/3 11:24
+ * @Date 2023/11/7 15:06
  */
 public class ServerTest {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         int port = 50051;
         Server server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
-                .addService(new GRpcRequestAdapter())
+                .addService(new RemoteRequestAdapter())
                 .build()
                 .start();
 
@@ -34,4 +33,5 @@ public class ServerTest {
             System.err.println("*** server shut down");
         }));
     }
+
 }

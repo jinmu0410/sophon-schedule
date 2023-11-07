@@ -47,6 +47,11 @@
             <version>1.18.28</version>
         </dependency>
 
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+        </dependency>
+
         <!-- gRPC -->
         <dependency>
             <groupId>io.grpc</groupId>

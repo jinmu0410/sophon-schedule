@@ -74,7 +74,7 @@ public final class JacksonUtils {
         try {
             return mapper.writeValueAsBytes(obj);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException( e);
         }
     }
     
@@ -193,7 +193,7 @@ public final class JacksonUtils {
         try {
             return mapper.readValue(json, typeReference);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException( e);
         }
     }
     
