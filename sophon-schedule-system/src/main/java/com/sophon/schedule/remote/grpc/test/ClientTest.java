@@ -2,7 +2,7 @@ package com.sophon.schedule.remote.grpc.test;
 
 import com.sophon.schedule.remote.grpc.Payload;
 import com.sophon.schedule.remote.grpc.RequestGrpc;
-import com.sophon.schedule.remote.grpc.utils.PayloadUtil;
+import com.sophon.schedule.remote.grpc.utils.PayloadConvert;
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
@@ -26,11 +26,11 @@ public class ClientTest {
         testRequest.setRequestId("request-1");
         testRequest.setRequestText("测试请求数据");
 
-        Payload payload = PayloadUtil.convert(testRequest, "127.0.0.1", "");
+        Payload payload = PayloadConvert.convert(testRequest, "127.0.0.1", "");
 
         Payload response = blockingStub.request(payload);
         //todo 客户端和服务端都要加载PayloadRegistry
-        Object parse = PayloadUtil.parse(response);
+        Object parse = PayloadConvert.parse(response);
         if(parse instanceof TestResponse){
             TestResponse testResponse = (TestResponse) parse;
             System.out.println("接收到来自服务端的回信 ----- , responseId = " + testResponse.getResponseId() + " responseText = " + testResponse.getResponseText());

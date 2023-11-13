@@ -3,11 +3,10 @@ package com.sophon.schedule.remote.grpc.adapter;
 
 import com.sophon.schedule.remote.grpc.Payload;
 import com.sophon.schedule.remote.grpc.RequestGrpc;
-import com.sophon.schedule.remote.grpc.core.Response;
 import com.sophon.schedule.remote.grpc.test.TestRequest;
 import com.sophon.schedule.remote.grpc.test.TestResponse;
 import com.sophon.schedule.remote.grpc.utils.PayloadRegistry;
-import com.sophon.schedule.remote.grpc.utils.PayloadUtil;
+import com.sophon.schedule.remote.grpc.utils.PayloadConvert;
 import io.grpc.stub.StreamObserver;
 
 
@@ -25,7 +24,7 @@ public class RemoteRequestAdapter extends RequestGrpc.RequestImplBase {
 
     @Override
     public void request(Payload request, StreamObserver<Payload> responseObserver) {
-        Object parse = PayloadUtil.parse(request);
+        Object parse = PayloadConvert.parse(request);
         if(parse instanceof TestRequest){
             System.out.println("-----接收到testRequest请求-----");
 
@@ -37,7 +36,7 @@ public class RemoteRequestAdapter extends RequestGrpc.RequestImplBase {
             TestResponse testResponse = new TestResponse();
             testResponse.setResponseId("response-1");
             testResponse.setResponseText("测试testResponse响应");
-            Payload payload = PayloadUtil.convert(testResponse,"127.0.0.1","");
+            Payload payload = PayloadConvert.convert(testResponse,"127.0.0.1","");
 
             responseObserver.onNext(payload);
         }

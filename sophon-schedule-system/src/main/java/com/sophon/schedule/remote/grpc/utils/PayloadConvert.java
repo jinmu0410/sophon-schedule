@@ -9,8 +9,6 @@ import com.sophon.schedule.remote.grpc.core.Request;
 import com.sophon.schedule.remote.grpc.core.Response;
 
 import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * TODO
@@ -18,7 +16,7 @@ import java.util.Map;
  * @Author jinmu
  * @Date 2023/11/7 15:41
  */
-public class PayloadUtil {
+public class PayloadConvert {
 
 
     public static Payload convert(Request request,String clientIp,String extra) {
