@@ -20,7 +20,7 @@ public class AutoGeneratorConfig {
     private static final String outMapper = "/Users/jinmu/Downloads/self/sophon-schedule/sophon-schedule-dao" + "/src/main/resources/mapper";
 
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:mysql://192.168.110.40:3306/test?serverTimezone=Asia/Shanghai", "root", "Supcon_21")
+        FastAutoGenerator.create("jdbc:mysql://47.97.231.182:3306/ry-vue?serverTimezone=Asia/Shanghai", "aifish", "R#m9@L7s$yFhN23")
                 .globalConfig(builder -> {
                     builder.author("jinmu") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
@@ -37,12 +37,12 @@ public class AutoGeneratorConfig {
 
                 }))
                 .packageConfig(builder -> {
-                    builder.parent("com.sophon.schedule") // 设置父包名
+                    builder.parent("com.aifishfish.member") // 设置父包名
                             //.moduleName("task") // 设置父包模块名
                             .pathInfo(Collections.singletonMap(OutputFile.xml, outMapper)); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("task,task_depend,task_instance,task_instance_depend"); // 设置需要生成的表名
+                    builder.addInclude("member_user,member_growth,member_benefit,member_grade,member_platform,member_group"); // 设置需要生成的表名
                             //.addTablePrefix(); // 设置过滤表前缀
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板

@@ -1,0 +1,1 @@
+ffmpeg -i $1 -profile:v baseline -level 3.0 -start_number 0 -hls_time 20 -hls_list_size 0 -f hls -hls_key_info_file $2 $3
