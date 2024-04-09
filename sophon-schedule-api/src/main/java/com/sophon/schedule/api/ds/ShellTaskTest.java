@@ -23,7 +23,7 @@ import java.util.Collections;
 public class ShellTaskTest {
 
     public static void main(String[] args) {
-        Long projectCode = 12811250008512l;
+        Long projectCode = 13132483984736l;
         BeanConfig beanConfig = new BeanConfig();
         DolphinClient client = beanConfig.dolphinClient();
         Long taskCode = client.opsForProcess().generateTaskCode(projectCode, 1).get(0);
@@ -31,7 +31,7 @@ public class ShellTaskTest {
         //1.任务定义
         DinkyTask dinkyTask = new DinkyTask();
         dinkyTask.setAddress("http://192.168.201.54:7888");
-        dinkyTask.setTaskId("17");
+        dinkyTask.setTaskId("353");
         dinkyTask.setOnline(false);
 
         TaskDefinition taskDefinition =
